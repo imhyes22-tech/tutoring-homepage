@@ -95,6 +95,14 @@
   .c-sky { background: var(--sky); } .c-lilac { background: var(--lilac); }
   .note { font-size: 13px; color: var(--ink-2); text-align: center; margin-top: 18px; }
 
+  /* ---------- 한 줄 하이라이트 ---------- */
+  .highlight { background: var(--ink); color: #fff; border-radius: 32px; padding: 40px 28px; text-align: center; margin-top: 8px; position: relative; }
+  .hl-emoji { position: absolute; top: -26px; left: 50%; transform: translateX(-50%); width: 52px; height: 52px; display: grid; place-items: center; background: var(--yellow); border-radius: 50%; font-size: 26px; box-shadow: 0 4px 0 #e0b400; }
+  .hl-sub { font-size: 15px; color: #cfc8b8; }
+  .hl-main { font-family: "Jua", sans-serif; font-size: clamp(20px, 3.6vw, 32px); line-height: 1.55; margin-top: 6px; }
+  .hl-main s { text-decoration-color: #e05a7a; text-decoration-thickness: 3px; color: #a9a294; }
+  .hl-main mark { background: linear-gradient(transparent 58%, rgba(255,216,77,.25) 58%); color: var(--yellow); padding: 0 4px; }
+
   /* ---------- 수강료 ---------- */
   .toggle { display: flex; justify-content: center; margin-bottom: 24px; }
   .toggle-in { display: inline-flex; background: #fff; border-radius: 999px; padding: 5px; box-shadow: 0 4px 0 var(--line); }
@@ -281,6 +289,15 @@
       </div>
     </div>
   </section>
+
+  <!-- 한 줄 하이라이트 -->
+  <div class="wrap">
+    <div class="highlight">
+      <div class="hl-emoji">🧭</div>
+      <p class="hl-sub">와와학습코칭센터는</p>
+      <p class="hl-main">공부를 <s>대신 가르쳐 주는</s> 학원이 아니라,<br><mark>공부를 제대로 하도록 이끌어 주는</mark> 학습코칭센터예요.</p>
+    </div>
+  </div>
 
   <!-- 수강료 -->
   <section class="block" id="price">
