@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>해피에듀 | 1:1 과외</title>
-<meta name="description" content="학교별 내신 관리부터 입시까지, 1:1 맞춤 과외">
+<title>와와학습코칭센터 상담 신청 | 해피에듀 (마케팅 파트너)</title>
+<meta name="description" content="전국 와와학습코칭센터 상담 접수. 지역과 학년만 남기면 가까운 지점으로 연결해 드려요. 본 사이트는 공식 홈페이지가 아닌 마케팅 파트너 운영 사이트입니다.">
 <link rel="canonical" href="https://happyedu.co.kr/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
@@ -13,8 +13,8 @@
 <!-- 검색 노출용 미리보기 (카카오톡·네이버 공유 시 표시) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="해피에듀">
-<meta property="og:title" content="해피에듀 | 1:1 과외">
-<meta property="og:description" content="학교별 내신 관리부터 입시까지, 1:1 맞춤 과외">
+<meta property="og:title" content="와와학습코칭센터 상담 신청 | 해피에듀">
+<meta property="og:description" content="지역과 학년만 남기면 가까운 와와학습코칭센터 지점으로 연결해 드려요. (공식 홈페이지 아님 · 마케팅 파트너 운영)">
 <meta property="og:url" content="https://happyedu.co.kr/">
 <meta property="og:locale" content="ko_KR">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,6 +45,10 @@
   a { color: inherit; text-decoration: none; }
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
 
+  /* ---------- 비공식 안내 띠 ---------- */
+  .notice { background: var(--ink); color: #d8dfc8; font-size: 13px; text-align: center; padding: 8px 20px; }
+  .notice b { color: var(--lime); font-weight: 700; }
+
   /* ---------- 헤더 ---------- */
   header {
     position: sticky; top: 0; z-index: 10;
@@ -54,18 +58,20 @@
   }
   .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
   .logo { font-weight: 900; font-size: 20px; letter-spacing: -.5px; display: flex; align-items: center; gap: 8px; }
+  .logo small { font-size: 12px; font-weight: 500; color: var(--ink-2); letter-spacing: 0; }
   .logo-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 3px var(--ink); }
   .menu { display: flex; gap: 28px; font-weight: 500; font-size: 15px; }
   .menu a:hover { color: var(--lime-deep); }
   .btn {
     display: inline-flex; align-items: center; gap: 6px;
     background: var(--ink); color: var(--lime);
-    padding: 10px 18px; border-radius: 999px;
-    font-weight: 700; font-size: 14px;
+    padding: 10px 18px; border-radius: 999px; border: 0; cursor: pointer;
+    font: inherit; font-weight: 700; font-size: 14px;
     transition: transform .15s;
   }
   .btn:hover { transform: translateY(-2px); }
   .btn.lime { background: var(--lime); color: var(--ink); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
   .menu-toggle { display: none; background: none; border: 0; font-size: 24px; cursor: pointer; }
 
   /* ---------- 히어로 ---------- */
@@ -82,13 +88,12 @@
   }
   .hero h1 { font-size: clamp(34px, 6vw, 60px); line-height: 1.2; font-weight: 900; letter-spacing: -1.5px; margin: 18px 0 20px; }
   .hero h1 mark { background: linear-gradient(transparent 55%, var(--lime) 55%); color: inherit; padding: 0 4px; }
-  .hero p { font-size: 18px; color: var(--ink-2); max-width: 560px; }
+  .hero p { font-size: 18px; color: var(--ink-2); max-width: 580px; }
   .hero-cta { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
   .hero-cta .btn { padding: 14px 24px; font-size: 16px; }
-  .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; max-width: 640px; }
   .stat { border-left: 3px solid var(--lime); padding-left: 14px; }
-  .stat b { display: block; font-size: 28px; font-weight: 900; }
+  .stat b { display: block; font-size: 26px; font-weight: 900; }
   .stat span { font-size: 14px; color: var(--ink-2); }
 
   /* ---------- 공통 섹션 ---------- */
@@ -98,71 +103,79 @@
   .sec-head h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 900; letter-spacing: -1px; margin-top: 6px; }
   .sec-head p { color: var(--ink-2); max-width: 420px; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .icon { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--lime); font-size: 20px; margin-bottom: 14px; }
 
-  /* ---------- 관리중인 학교 ---------- */
-  .filter { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
-  .filter button {
-    font: inherit; font-size: 14px; font-weight: 500; cursor: pointer;
-    border: 1px solid var(--line); background: var(--card);
-    padding: 8px 16px; border-radius: 999px;
+  /* ---------- 과목 ---------- */
+  .subjects { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; }
+  .subject { text-align: center; transition: border-color .15s, transform .15s; }
+  .subject:hover { border-color: var(--lime-deep); transform: translateY(-3px); }
+  .subject h3 { font-size: 19px; font-weight: 900; }
+  .subject p { font-size: 13px; color: var(--ink-2); margin-top: 4px; }
+
+  /* ---------- 학습코칭 특징 ---------- */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .features h3 { font-size: 18px; margin-bottom: 6px; }
+  .features p { font-size: 15px; color: var(--ink-2); }
+
+  /* ---------- 등록 절차 ---------- */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; }
+  .steps .card { position: relative; padding-top: 32px; }
+  .steps .step { position: absolute; top: -14px; left: 24px; background: var(--lime); font-weight: 900; font-size: 13px; padding: 4px 12px; border-radius: 999px; }
+  .steps h3 { font-size: 18px; margin-bottom: 6px; }
+  .steps p { font-size: 14px; color: var(--ink-2); }
+
+  /* ---------- FAQ ---------- */
+  .faq { display: grid; gap: 12px; max-width: 820px; }
+  .faq details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; }
+  .faq summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--lime-deep); font-weight: 900; }
+  .faq details[open] summary::after { content: "−"; }
+  .faq details p { margin-top: 10px; color: var(--ink-2); font-size: 15px; }
+
+  /* ---------- 상담 신청 폼 ---------- */
+  .apply { background: var(--ink); color: #fff; border-radius: 28px; padding: 56px 40px; margin: 40px 0 88px; display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; }
+  .apply h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 900; letter-spacing: -1px; line-height: 1.3; }
+  .apply h2 em { font-style: normal; color: var(--lime); }
+  .apply .lead { color: #b8c0a8; margin: 14px 0 24px; }
+  .apply .side-note { font-size: 13px; color: #8f987f; border-top: 1px solid #2c3420; padding-top: 16px; margin-top: 16px; }
+  form { display: grid; gap: 14px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  label.f { display: grid; gap: 6px; font-size: 14px; font-weight: 500; color: #dfe6cf; }
+  label.f .req { color: var(--lime); }
+  input[type=text], input[type=tel], select, textarea {
+    font: inherit; font-size: 15px; color: var(--ink);
+    background: #fff; border: 2px solid transparent; border-radius: 12px; padding: 12px 14px; width: 100%;
   }
-  .filter button.on { background: var(--ink); color: var(--lime); border-color: var(--ink); }
-  .schools { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
-  .school { display: flex; flex-direction: column; gap: 10px; transition: border-color .15s, transform .15s; }
-  .school:hover { border-color: var(--lime-deep); transform: translateY(-3px); }
-  .school .lv { font-size: 12px; font-weight: 700; color: var(--lime-deep); }
-  .school h3 { font-size: 19px; font-weight: 700; }
-  .school .meta { font-size: 14px; color: var(--ink-2); }
-  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
-  .chip { font-size: 12px; background: var(--lime-soft); padding: 4px 10px; border-radius: 999px; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--lime); }
+  textarea { resize: vertical; min-height: 80px; }
+  fieldset { border: 0; display: grid; gap: 8px; }
+  legend { font-size: 14px; font-weight: 500; color: #dfe6cf; margin-bottom: 6px; }
+  .checks { display: flex; flex-wrap: wrap; gap: 8px; }
+  .checks label { cursor: pointer; }
+  .checks input { position: absolute; opacity: 0; pointer-events: none; }
+  .checks span { display: inline-block; border: 1px solid rgba(198,241,53,.5); color: var(--lime); padding: 7px 14px; border-radius: 999px; font-size: 14px; }
+  .checks input:checked + span { background: var(--lime); color: var(--ink); font-weight: 700; }
+  .checks input:focus-visible + span { outline: 2px solid #fff; outline-offset: 2px; }
+  .consent { background: #1f2614; border-radius: 12px; padding: 14px 16px; font-size: 13px; color: #b8c0a8; }
+  .consent summary { cursor: pointer; color: #dfe6cf; }
+  .consent table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .consent th, .consent td { text-align: left; vertical-align: top; padding: 6px 0; border-top: 1px solid #2c3420; }
+  .consent th { width: 96px; color: #dfe6cf; font-weight: 500; }
+  .agree { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: #dfe6cf; cursor: pointer; }
+  .agree input { margin-top: 4px; accent-color: var(--lime); width: 16px; height: 16px; }
+  form .btn.lime { justify-content: center; padding: 15px; font-size: 16px; }
+  form .btn:disabled { opacity: .6; cursor: wait; transform: none; }
+  .form-msg { font-size: 14px; min-height: 1.4em; }
+  .form-msg.ok { color: var(--lime); }
+  .form-msg.err { color: #ffb4a8; }
 
-  /* ---------- 수업 지역 ---------- */
-  .area-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; }
-  .area-map {
-    background: var(--ink); color: #fff; border-radius: var(--radius);
-    padding: 32px; display: flex; flex-direction: column; justify-content: space-between; min-height: 300px;
-  }
-  .area-map h3 { color: var(--lime); font-size: 24px; font-weight: 900; }
-  .area-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-  .area-list span { border: 1px solid rgba(198,241,53,.5); color: var(--lime); padding: 8px 14px; border-radius: 999px; font-size: 15px; }
-  .area-map small { color: #b8c0a8; margin-top: 24px; display: block; }
-  .area-side { display: grid; gap: 16px; }
-  .area-side .card h4 { font-size: 17px; margin-bottom: 6px; }
-  .area-side .card p { font-size: 15px; color: var(--ink-2); }
-  .icon { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--lime); font-size: 18px; margin-bottom: 12px; }
+  /* ---------- 떠 있는 상담 버튼 ---------- */
+  .float-cta { position: fixed; right: 20px; bottom: 20px; z-index: 20; box-shadow: 0 8px 24px rgba(20,26,10,.25); padding: 14px 20px; font-size: 15px; }
 
-  /* ---------- 입시 ---------- */
-  .admission { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .admission .card { position: relative; padding-top: 32px; }
-  .admission .step { position: absolute; top: -14px; left: 24px; background: var(--lime); font-weight: 900; font-size: 13px; padding: 4px 12px; border-radius: 999px; }
-  .admission h3 { font-size: 20px; margin-bottom: 10px; }
-  .admission ul { list-style: none; display: grid; gap: 8px; font-size: 15px; color: var(--ink-2); }
-  .admission li::before { content: "✓"; color: var(--lime-deep); font-weight: 900; margin-right: 8px; }
-  .results { margin-top: 24px; background: var(--lime); border-radius: var(--radius); padding: 28px 32px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
-  .results h3 { font-size: 20px; font-weight: 900; }
-  .results-list { display: flex; gap: 10px; flex-wrap: wrap; }
-  .results-list span { background: var(--ink); color: var(--lime); font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 999px; }
-
-  /* ---------- 수업 이야기 ---------- */
-  .stories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .story { padding: 0; overflow: hidden; display: flex; flex-direction: column; transition: transform .15s; }
-  .story:hover { transform: translateY(-3px); }
-  .story .thumb { aspect-ratio: 16 / 10; background: var(--lime-soft); display: grid; place-items: center; font-size: 40px; }
-  .story .body { padding: 20px 22px 24px; }
-  .story .cat { font-size: 12px; font-weight: 700; color: var(--lime-deep); }
-  .story h3 { font-size: 18px; margin: 6px 0 8px; line-height: 1.4; }
-  .story p { font-size: 14px; color: var(--ink-2); }
-  .story time { display: block; font-size: 13px; color: #8a917e; margin-top: 14px; }
-
-  /* ---------- 상담 / 푸터 ---------- */
-  .contact { background: var(--ink); color: #fff; border-radius: 28px; padding: 56px 40px; text-align: center; margin: 40px 0 88px; }
-  .contact h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 900; letter-spacing: -1px; }
-  .contact h2 em { font-style: normal; color: var(--lime); }
-  .contact p { color: #b8c0a8; margin: 12px 0 28px; }
-  .contact .hero-cta { justify-content: center; }
-  .contact .btn.ghost { color: #fff; border-color: #fff; }
-  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; font-size: 13px; color: #8a917e; }
-  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 96px; font-size: 13px; color: #8a917e; }
+  footer .wrap { display: grid; gap: 6px; }
+  footer strong { color: var(--ink-2); }
 
   /* ---------- 모바일 ---------- */
   @media (max-width: 860px) {
@@ -174,29 +187,35 @@
     .menu a { padding: 16px 20px; border-top: 1px solid var(--line); }
     .menu-toggle { display: block; }
     .nav .btn { display: none; }
-    .area-grid, .admission, .stories { grid-template-columns: 1fr; }
-    .admission { gap: 28px; }
+    .logo small { display: none; }
+    .features, .steps, .apply { grid-template-columns: 1fr; }
+    .steps { gap: 28px; }
     .hero { padding: 56px 0 48px; }
     section.block { padding: 64px 0; }
-    .contact { padding: 40px 20px; }
+    .apply { padding: 36px 20px; }
   }
   @media (max-width: 480px) {
     .stats { grid-template-columns: 1fr; }
+    .row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+<div class="notice">
+  본 사이트는 <b>와와학습코칭센터 공식 홈페이지가 아닙니다.</b> 와와학습코칭센터 마케팅 파트너(해피에듀)가 운영하는 상담 접수 사이트입니다.
+</div>
+
 <header>
   <div class="wrap nav">
-    <a href="#" class="logo"><span class="logo-dot"></span>해피에듀</a>
+    <a href="#" class="logo"><span class="logo-dot"></span>해피에듀 <small>와와학습코칭센터 상담 접수</small></a>
     <nav class="menu" id="menu">
-      <a href="#schools">관리중인 학교</a>
-      <a href="#area">수업 지역</a>
-      <a href="#admission">입시</a>
-      <a href="#story">수업 이야기</a>
+      <a href="#subjects">과목</a>
+      <a href="#coaching">학습코칭</a>
+      <a href="#process">상담 절차</a>
+      <a href="#faq">자주 묻는 질문</a>
     </nav>
-    <a href="#contact" class="btn">상담 신청 →</a>
+    <a href="#apply" class="btn">상담 신청 →</a>
     <button class="menu-toggle" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
   </div>
 </header>
@@ -205,236 +224,266 @@
   <!-- 히어로 -->
   <section class="hero">
     <div class="wrap">
-      <span class="tag">1:1 맞춤 과외 · 중등 / 고등</span>
-      <h1>학교 시험지까지 아는<br><mark>진짜 내신 관리</mark></h1>
-      <p>학교별 기출과 출제 경향을 분석해서 우리 아이 학교에 꼭 맞는 수업을 설계합니다. 내신부터 입시 전략까지 한 번에.</p>
+      <span class="tag">와와학습코칭센터 · 초등 / 중등 / 고등</span>
+      <h1>우리 동네 와와학습코칭센터,<br><mark>상담 신청 한 번으로</mark></h1>
+      <p>지역과 학년만 남겨 주세요. 가까운 와와학습코칭센터 지점과 연결해서 학생에게 맞는 상담을 받을 수 있도록 도와드려요.</p>
       <div class="hero-cta">
-        <a href="#contact" class="btn lime">무료 상담 받기</a>
-        <a href="#schools" class="btn ghost">관리 학교 보기</a>
+        <a href="#apply" class="btn lime">무료 상담 신청하기</a>
+        <a href="#process" class="btn ghost">상담은 이렇게 진행돼요</a>
       </div>
       <div class="stats">
-        <div class="stat"><b>00개</b><span>관리중인 학교</span></div>
-        <div class="stat"><b>00년</b><span>수업 경력</span></div>
-        <div class="stat"><b>00명</b><span>누적 학생 수</span></div>
+        <div class="stat"><b>전국</b><span>지역별 지점 연결</span></div>
+        <div class="stat"><b>초1 ~ 고3</b><span>전 학년 상담</span></div>
+        <div class="stat"><b>무료</b><span>상담 · 학습 진단</span></div>
       </div>
     </div>
   </section>
 
-  <!-- 01 관리중인 학교 -->
-  <section class="block" id="schools">
+  <!-- 01 과목 -->
+  <section class="block" id="subjects">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <div class="sec-num">01 · SCHOOLS</div>
-          <h2>관리중인 학교</h2>
+          <div class="sec-num">01 · SUBJECTS</div>
+          <h2>상담 가능한 과목</h2>
         </div>
-        <p>학교마다 시험 범위, 출제 스타일, 수행평가가 다릅니다. 학교별 자료를 따로 관리해요.</p>
+        <p>개설 과목은 지점마다 다를 수 있어요. 상담 때 우리 동네 지점 기준으로 안내받으세요.</p>
       </div>
-      <div class="filter">
-        <button class="on" data-f="all">전체</button>
-        <button data-f="high">고등학교</button>
-        <button data-f="middle">중학교</button>
-      </div>
-      <div class="schools">
-        <article class="card school" data-lv="high">
-          <span class="lv">고등학교</span>
-          <h3>OO고등학교</h3>
-          <p class="meta">1~3학년 · 수학 / 영어</p>
-          <div class="chips"><span class="chip">기출 분석</span><span class="chip">수행평가</span></div>
-        </article>
-        <article class="card school" data-lv="high">
-          <span class="lv">고등학교</span>
-          <h3>OO여자고등학교</h3>
-          <p class="meta">1~2학년 · 수학</p>
-          <div class="chips"><span class="chip">기출 분석</span><span class="chip">서술형 대비</span></div>
-        </article>
-        <article class="card school" data-lv="high">
-          <span class="lv">고등학교</span>
-          <h3>OO고등학교</h3>
-          <p class="meta">2~3학년 · 영어</p>
-          <div class="chips"><span class="chip">모의고사</span><span class="chip">내신</span></div>
-        </article>
-        <article class="card school" data-lv="middle">
-          <span class="lv">중학교</span>
-          <h3>OO중학교</h3>
-          <p class="meta">2~3학년 · 수학</p>
-          <div class="chips"><span class="chip">선행</span><span class="chip">내신</span></div>
-        </article>
-        <article class="card school" data-lv="middle">
-          <span class="lv">중학교</span>
-          <h3>OO중학교</h3>
-          <p class="meta">1~3학년 · 수학 / 영어</p>
-          <div class="chips"><span class="chip">기초 다지기</span></div>
-        </article>
+      <div class="subjects">
+        <div class="card subject"><div class="icon">📐</div><h3>수학</h3><p>개념부터 심화까지</p></div>
+        <div class="card subject"><div class="icon">🔤</div><h3>영어</h3><p>문법 · 독해 · 내신</p></div>
+        <div class="card subject"><div class="icon">📖</div><h3>국어</h3><p>독해력 · 문학 · 문법</p></div>
+        <div class="card subject"><div class="icon">🔬</div><h3>과학</h3><p>통합과학 · 선택과목</p></div>
+        <div class="card subject"><div class="icon">🌏</div><h3>사회</h3><p>통합사회 · 선택과목</p></div>
+        <div class="card subject"><div class="icon">🏛️</div><h3>한국사</h3><p>흐름 잡기 · 내신</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 02 수업 지역 -->
-  <section class="block" id="area">
+  <!-- 02 학습코칭 -->
+  <section class="block" id="coaching">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <div class="sec-num">02 · AREA</div>
-          <h2>수업 지역</h2>
+          <div class="sec-num">02 · COACHING</div>
+          <h2>학습코칭이란?</h2>
         </div>
-        <p>방문 수업 가능 지역입니다. 그 외 지역은 온라인 수업으로 진행해요.</p>
+        <p>가르치기만 하는 수업이 아니라, 학생이 스스로 공부하는 힘을 기르도록 옆에서 이끌어 주는 방식이에요.</p>
       </div>
-      <div class="area-grid">
-        <div class="area-map">
-          <div>
-            <h3>방문 수업 가능 지역</h3>
-            <div class="area-list">
-              <span>OO구 OO동</span>
-              <span>OO구 OO동</span>
-              <span>OO구 OO동</span>
-              <span>OO구 전체</span>
-              <span>OO시</span>
-            </div>
-          </div>
-          <small>* 목록에 없는 지역도 문의 주시면 일정에 따라 조율 가능합니다.</small>
-        </div>
-        <div class="area-side">
-          <div class="card">
-            <div class="icon">🏠</div>
-            <h4>방문 수업</h4>
-            <p>학생 집으로 직접 찾아가요. 주 1~3회, 회당 90~120분.</p>
-          </div>
-          <div class="card">
-            <div class="icon">💻</div>
-            <h4>온라인 수업</h4>
-            <p>화상 + 판서 공유로 진행해요. 지역 상관없이 수업 가능.</p>
-          </div>
-        </div>
+      <div class="features">
+        <div class="card"><div class="icon">🩺</div><h3>학습 진단</h3><p>현재 실력과 공부 습관을 먼저 확인하고 시작해요.</p></div>
+        <div class="card"><div class="icon">🗓️</div><h3>맞춤 학습 계획</h3><p>진단 결과에 맞춰 학생별로 학습 계획을 세워요.</p></div>
+        <div class="card"><div class="icon">✍️</div><h3>자기주도 학습</h3><p>스스로 계획하고 점검하는 습관을 함께 만들어 가요.</p></div>
+        <div class="card"><div class="icon">👩‍🏫</div><h3>개별 코칭</h3><p>막히는 부분은 선생님이 학생 수준에 맞춰 바로 짚어 줘요.</p></div>
+        <div class="card"><div class="icon">📊</div><h3>꾸준한 점검</h3><p>학습 진행 상황을 확인하고 계획을 계속 조정해요.</p></div>
+        <div class="card"><div class="icon">☀️</div><h3>방학 특강</h3><p>방학 기간에는 부족한 부분을 집중해서 채워요. (지점별 운영)</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 03 입시 -->
-  <section class="block" id="admission">
+  <!-- 03 상담 절차 -->
+  <section class="block" id="process">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <div class="sec-num">03 · ADMISSION</div>
-          <h2>입시</h2>
+          <div class="sec-num">03 · PROCESS</div>
+          <h2>상담은 이렇게 진행돼요</h2>
         </div>
-        <p>내신 관리에서 끝나지 않고, 학생에게 맞는 전형까지 함께 고민합니다.</p>
+        <p>신청부터 첫 수업까지, 부담 없이 한 단계씩 진행돼요.</p>
       </div>
-      <div class="admission">
-        <div class="card">
-          <span class="step">STEP 1</span>
-          <h3>내신 관리</h3>
-          <ul>
-            <li>학교별 기출 분석</li>
-            <li>시험 4주 전 집중 대비</li>
-            <li>서술형 · 수행평가 첨삭</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="step">STEP 2</span>
-          <h3>수시 전략</h3>
-          <ul>
-            <li>성적 추이 기반 전형 분석</li>
-            <li>세특 연계 탐구 주제 제안</li>
-            <li>학생부 방향 상담</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="step">STEP 3</span>
-          <h3>정시 대비</h3>
-          <ul>
-            <li>모의고사 오답 분석</li>
-            <li>취약 유형 집중 훈련</li>
-            <li>실전 시간 관리 연습</li>
-          </ul>
-        </div>
-      </div>
-      <div class="results">
-        <h3>최근 합격 / 성적 향상 사례</h3>
-        <div class="results-list">
-          <span>OO대 OO학과 합격</span>
-          <span>내신 0등급 → 0등급</span>
-          <span>모의고사 00점 향상</span>
-        </div>
+      <div class="steps">
+        <div class="card"><span class="step">STEP 1</span><h3>상담 신청</h3><p>이 페이지에서 지역 · 학년 · 연락처를 남겨 주세요.</p></div>
+        <div class="card"><span class="step">STEP 2</span><h3>지점 연결</h3><p>가까운 와와학습코칭센터 지점에서 전화로 연락드려요.</p></div>
+        <div class="card"><span class="step">STEP 3</span><h3>방문 상담 · 진단</h3><p>지점에 방문해서 학습 진단을 받고 수업 계획을 안내받아요.</p></div>
+        <div class="card"><span class="step">STEP 4</span><h3>수업 시작</h3><p>결정하시면 학생에게 맞춘 일정으로 수업을 시작해요.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 04 수업 이야기 -->
-  <section class="block" id="story">
+  <!-- 04 FAQ -->
+  <section class="block" id="faq">
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <div class="sec-num">04 · STORY</div>
-          <h2>수업 이야기</h2>
+          <div class="sec-num">04 · FAQ</div>
+          <h2>자주 묻는 질문</h2>
         </div>
-        <p>수업하면서 있었던 일, 공부법, 학부모님께 드리는 이야기를 기록해요.</p>
       </div>
-      <div class="stories">
-        <a href="#" class="card story">
-          <div class="thumb">📝</div>
-          <div class="body">
-            <span class="cat">공부법</span>
-            <h3>시험 4주 전, 이렇게 계획을 세워요</h3>
-            <p>내신 기간에 무엇부터 해야 할지 막막한 학생들을 위한 주차별 계획표.</p>
-            <time>2026.00.00</time>
-          </div>
-        </a>
-        <a href="#" class="card story">
-          <div class="thumb">🌱</div>
-          <div class="body">
-            <span class="cat">수업 후기</span>
-            <h3>수학이 제일 싫다던 학생의 한 학기</h3>
-            <p>기초부터 다시 잡으면서 달라진 점들을 정리했어요.</p>
-            <time>2026.00.00</time>
-          </div>
-        </a>
-        <a href="#" class="card story">
-          <div class="thumb">🎯</div>
-          <div class="body">
-            <span class="cat">입시 정보</span>
-            <h3>고1 학부모님이 지금 챙겨야 할 것</h3>
-            <p>고교학점제와 과목 선택, 미리 알아두면 좋은 내용.</p>
-            <time>2026.00.00</time>
-          </div>
-        </a>
+      <div class="faq">
+        <details>
+          <summary>여기가 와와학습코칭센터 공식 홈페이지인가요?</summary>
+          <p>아니요. 이 사이트는 와와학습코칭센터 마케팅 파트너인 해피에듀가 운영하는 상담 접수 사이트예요. 남겨 주신 정보는 상담을 위해 해당 지역 와와학습코칭센터 지점에 전달됩니다.</p>
+        </details>
+        <details>
+          <summary>상담 신청하면 비용이 드나요?</summary>
+          <p>상담 신청은 무료예요. 신청했다고 해서 등록해야 하는 것도 아니에요.</p>
+        </details>
+        <details>
+          <summary>수강료는 얼마인가요?</summary>
+          <p>지역, 학년, 주당 수업 횟수에 따라 달라요. 상담 때 해당 지점에서 정확하게 안내해 드려요.</p>
+        </details>
+        <details>
+          <summary>연락은 언제 오나요?</summary>
+          <p>신청 내용을 확인한 뒤 가까운 지점에서 순서대로 연락드려요. 원하는 연락 시간이 있으면 문의 내용에 적어 주세요.</p>
+        </details>
+        <details>
+          <summary>우리 동네에도 지점이 있나요?</summary>
+          <p>와와학습코칭센터는 전국에 지점이 있어요. 지역을 남겨 주시면 가장 가까운 지점을 찾아 연결해 드려요.</p>
+        </details>
       </div>
     </div>
   </section>
 
   <!-- 상담 신청 -->
   <div class="wrap">
-    <section class="contact" id="contact">
-      <h2>우리 아이에게 맞는 수업,<br><em>상담부터 시작해요</em></h2>
-      <p>현재 성적과 학교를 알려주시면 맞춤 수업 계획을 안내드려요.</p>
-      <div class="hero-cta">
-        <!-- 카카오톡 오픈채팅 / 전화번호로 바꿔주세요 -->
-        <a href="#" class="btn lime">💬 카카오톡 상담</a>
-        <a href="tel:010-0000-0000" class="btn ghost">📞 010-0000-0000</a>
+    <section class="apply" id="apply">
+      <div>
+        <h2>우리 아이 맞춤 상담,<br><em>지금 신청하세요</em></h2>
+        <p class="lead">지역과 학년을 남겨 주시면 가까운 와와학습코칭센터 지점에서 연락드려요.</p>
+        <p class="side-note">본 사이트는 와와학습코칭센터 공식 홈페이지가 아니며, 마케팅 파트너(해피에듀)가 상담 접수를 대행합니다.</p>
       </div>
+
+      <form id="applyForm" novalidate>
+        <div class="row">
+          <label class="f">학생 학년 <span class="req">*</span>
+            <select name="학년" required>
+              <option value="">선택해 주세요</option>
+              <optgroup label="초등학교">
+                <option>초1</option><option>초2</option><option>초3</option>
+                <option>초4</option><option>초5</option><option>초6</option>
+              </optgroup>
+              <optgroup label="중학교">
+                <option>중1</option><option>중2</option><option>중3</option>
+              </optgroup>
+              <optgroup label="고등학교">
+                <option>고1</option><option>고2</option><option>고3</option>
+              </optgroup>
+            </select>
+          </label>
+          <label class="f">연락처 <span class="req">*</span>
+            <input type="tel" name="연락처" placeholder="010-1234-5678" inputmode="numeric" required>
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="f">지역 (시/도) <span class="req">*</span>
+            <select name="시도" required>
+              <option value="">선택해 주세요</option>
+              <option>서울</option><option>경기</option><option>인천</option>
+              <option>부산</option><option>대구</option><option>광주</option>
+              <option>대전</option><option>울산</option><option>세종</option>
+              <option>강원</option><option>충북</option><option>충남</option>
+              <option>전북</option><option>전남</option><option>경북</option>
+              <option>경남</option><option>제주</option>
+            </select>
+          </label>
+          <label class="f">시/군/구 · 동 <span class="req">*</span>
+            <input type="text" name="상세지역" placeholder="예: 강남구 대치동" required>
+          </label>
+        </div>
+
+        <fieldset>
+          <legend>관심 과목 (여러 개 선택 가능)</legend>
+          <div class="checks">
+            <label><input type="checkbox" name="과목" value="수학"><span>수학</span></label>
+            <label><input type="checkbox" name="과목" value="영어"><span>영어</span></label>
+            <label><input type="checkbox" name="과목" value="국어"><span>국어</span></label>
+            <label><input type="checkbox" name="과목" value="과학"><span>과학</span></label>
+            <label><input type="checkbox" name="과목" value="사회"><span>사회</span></label>
+            <label><input type="checkbox" name="과목" value="한국사"><span>한국사</span></label>
+            <label><input type="checkbox" name="과목" value="상담 후 결정"><span>상담 후 결정</span></label>
+          </div>
+        </fieldset>
+
+        <label class="f">문의 내용 (선택)
+          <textarea name="문의내용" placeholder="원하는 연락 시간, 궁금한 점 등을 적어 주세요."></textarea>
+        </label>
+
+        <details class="consent">
+          <summary>개인정보 수집 · 이용 및 제3자 제공 안내 (자세히 보기)</summary>
+          <table>
+            <tr><th>수집 항목</th><td>학생 학년, 연락처, 지역, 관심 과목, 문의 내용</td></tr>
+            <tr><th>이용 목적</th><td>학습 상담 신청 접수 및 상담 연락</td></tr>
+            <tr><th>제공받는 자</th><td>신청 지역의 와와학습코칭센터 지점</td></tr>
+            <tr><th>제공 목적</th><td>상담 연락 및 방문 상담 안내</td></tr>
+            <tr><th>보유 기간</th><td>상담 목적 달성 후 지체 없이 파기</td></tr>
+          </table>
+          <p style="margin-top:10px">동의하지 않으실 수 있으며, 동의하지 않으면 상담 신청이 제한됩니다.</p>
+        </details>
+        <label class="agree"><input type="checkbox" name="개인정보동의" value="동의함" required> 개인정보 수집 · 이용 및 제3자 제공에 동의합니다. (필수)</label>
+
+        <!-- 스팸 방지용 숨김 칸 -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+
+        <button type="submit" class="btn lime">무료 상담 신청하기</button>
+        <p class="form-msg" id="formMsg" role="status"></p>
+      </form>
     </section>
   </div>
 </main>
 
+<a href="#apply" class="btn lime float-cta" id="floatCta">💬 상담 신청</a>
+
 <footer>
   <div class="wrap">
+    <span><strong>해피에듀</strong> · 와와학습코칭센터 마케팅 파트너 · 문의 010-0000-0000</span>
+    <span>본 사이트는 와와학습코칭센터 공식 홈페이지가 아닙니다. 와와학습코칭센터는 (주)동화세상에듀코의 브랜드입니다.</span>
     <span>© 2026 해피에듀</span>
-    <span>문의 · 010-0000-0000</span>
   </div>
 </footer>
 
 <script>
-  // 학교 필터
-  document.querySelectorAll('.filter button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter button').forEach(b => b.classList.remove('on'));
-      btn.classList.add('on');
-      const f = btn.dataset.f;
-      document.querySelectorAll('.school').forEach(s => {
-        s.style.display = (f === 'all' || s.dataset.lv === f) ? '' : 'none';
-      });
-    });
+  // 상담 신청을 받을 주소 (Formspree 등). 비어 있으면 신청이 전송되지 않아요.
+  const FORM_ENDPOINT = '';
+
+  const form = document.getElementById('applyForm');
+  const msg = document.getElementById('formMsg');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    msg.className = 'form-msg';
+
+    const phone = form.연락처.value.replace(/[^0-9]/g, '');
+    if (!form.학년.value || !form.시도.value || !form.상세지역.value.trim()) {
+      return showMsg('err', '학년과 지역을 모두 입력해 주세요.');
+    }
+    if (!/^01[016789][0-9]{7,8}$/.test(phone)) {
+      return showMsg('err', '연락처를 정확히 입력해 주세요. (예: 010-1234-5678)');
+    }
+    if (!form.개인정보동의.checked) {
+      return showMsg('err', '개인정보 수집 · 이용 및 제3자 제공에 동의해 주세요.');
+    }
+    if (!FORM_ENDPOINT) {
+      return showMsg('err', '상담 신청 접수 준비 중이에요. 잠시 후 다시 시도해 주세요.');
+    }
+
+    const data = new FormData(form);
+    data.set('과목', data.getAll('과목').join(', ') || '미선택');
+    const btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    try {
+      const res = await fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error(res.status);
+      form.reset();
+      showMsg('ok', '상담 신청이 접수됐어요! 가까운 지점에서 곧 연락드릴게요.');
+    } catch {
+      showMsg('err', '전송에 실패했어요. 잠시 후 다시 시도해 주세요.');
+    } finally {
+      btn.disabled = false;
+    }
   });
+
+  function showMsg(type, text) {
+    msg.className = 'form-msg ' + type;
+    msg.textContent = text;
+  }
+
+  // 신청서가 화면에 보이면 떠 있는 버튼 숨기기
+  const floatCta = document.getElementById('floatCta');
+  new IntersectionObserver(([en]) => {
+    floatCta.style.display = en.isIntersecting ? 'none' : '';
+  }).observe(document.getElementById('apply'));
+
   // 모바일 메뉴: 링크 누르면 닫기
   document.querySelectorAll('#menu a').forEach(a =>
     a.addEventListener('click', () => document.getElementById('menu').classList.remove('open'))
