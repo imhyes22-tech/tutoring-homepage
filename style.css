@@ -321,3 +321,10 @@ footer strong { color: var(--ink); }
 .center-btns .btn { flex: 1; padding: 9px 10px; font-size: 15px; }
 @media (max-width: 860px) { .centers { grid-template-columns: 1fr; } }
 @media (min-width: 861px) and (max-width: 1040px) { .centers { grid-template-columns: 1fr 1fr; } }
+.region-sec { margin-top: 36px; }
+.region-h { font-size: 24px; margin-bottom: 14px; }
+.region-h small { font-family: "Noto Sans KR", sans-serif; font-size: 14px; color: var(--ink-2); }
+.center .kw { font-size: 13px; font-weight: 700; color: #a07000; margin-top: -4px; }
+.center .near { font-size: 13px; color: var(--ink-2); }
+[hidden] { display: none !important; }
+.hero-tag { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 700; color: #a07000; background: var(--yellow-soft); padding: 5px 14px; border-radius: 999px; }
