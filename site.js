@@ -9,7 +9,7 @@ menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.c
 // 지금 보고 있는 페이지 메뉴 강조
 const here = location.pathname.split('/').pop() || 'index.html';
 menu.querySelectorAll('a').forEach(a => {
-  if (a.getAttribute('href').split('#')[0] === here) a.classList.add('on');
+  if (a.getAttribute('href').split('#')[0].replace(/^\//, '') === here) a.classList.add('on');
 });
 
 // 수강료: 서울 / 서울 외 전환
@@ -27,6 +27,11 @@ document.querySelectorAll('.toggle button').forEach(btn => {
 // 상담 신청서
 const form = document.getElementById('applyForm');
 if (form) {
+  // 센터 찾기에서 넘어오면 지역 · 지점 미리 채우기
+  const params = new URLSearchParams(location.search);
+  if (params.get('center')) form.희망지점.value = '와와 ' + params.get('center');
+  if (params.get('region')) form.시도.value = params.get('region');
+
   const msg = document.getElementById('formMsg');
   const showMsg = (type, text) => { msg.className = 'form-msg ' + type; msg.textContent = text; };
 
