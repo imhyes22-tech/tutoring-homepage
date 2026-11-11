@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://happyedu.co.kr/</loc>
-    <lastmod>2026-10-30</lastmod>
-  </url>
+  <url><loc>https://happyedu.co.kr/</loc></url>
+  <url><loc>https://happyedu.co.kr/about.html</loc></url>
+  <url><loc>https://happyedu.co.kr/program.html</loc></url>
+  <url><loc>https://happyedu.co.kr/price.html</loc></url>
+  <url><loc>https://happyedu.co.kr/class-status.html</loc></url>
+  <url><loc>https://happyedu.co.kr/contact.html</loc></url>
 </urlset>
