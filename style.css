@@ -345,7 +345,7 @@ footer strong { color: var(--ink); }
 .sch-legend span { padding: 3px 12px; border-radius: 999px; }
 .sch-list { max-width: 720px; margin: 0 auto; }
 .sch-month { font-size: 20px; margin: 22px 0 8px; }
-.sch-ev { display: grid; grid-template-columns: 120px 1fr; gap: 12px; background: #fff; border-radius: 14px; padding: 12px 18px; margin-bottom: 8px; box-shadow: 0 3px 0 var(--line); font-size: 15px; border-left: 6px solid var(--line); }
+.sch-ev { display: grid; grid-template-columns: 230px 1fr; gap: 12px; background: #fff; border-radius: 14px; padding: 12px 18px; margin-bottom: 8px; box-shadow: 0 3px 0 var(--line); font-size: 15px; border-left: 6px solid var(--line); }
 .sch-ev .d { color: var(--ink-2); font-size: 14px; }
 .ev-exam { background: var(--pink); } .sch-ev.ev-exam { background: #fff; border-left-color: #ff8fab; font-weight: 700; }
 .ev-break { background: var(--sky); } .sch-ev.ev-break { background: #fff; border-left-color: #8ec3ff; }
@@ -365,3 +365,21 @@ footer strong { color: var(--ink); }
 .gu-block { margin-bottom: 18px; }
 .gu-block h3 { font-size: 17px; margin-bottom: 8px; color: var(--ink-2); }
 .foot-links a { text-decoration: underline; }
+.subj-btns { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 22px; }
+.subj-btns .btn { padding: 9px 16px; font-size: 15px; }
+.info-table { max-width: 720px; }
+.info-table th { width: 130px; text-align: left; }
+.info-table td { text-align: left; color: var(--ink); }
+.region-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-top: 24px; }
+.region-card { display: grid; gap: 2px; text-align: center; padding: 18px; transition: transform .15s; }
+.region-card:hover { transform: translateY(-3px); }
+.region-card b { font-family: "Jua", sans-serif; font-weight: 400; font-size: 22px; }
+.region-card span { font-size: 13px; color: var(--ink-2); }
+.search-results { justify-content: center; margin-top: 8px; }
+.search-results small { color: var(--ink-2); font-size: 12px; }
+.gu-toc { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 4px 0 30px; }
+.gu-toc a { font-size: 13px; background: var(--yellow-soft); padding: 4px 11px; border-radius: 999px; }
+.gu-toc small { color: var(--ink-2); }
+.gu-block { scroll-margin-top: 84px; }
+.gu-block h3 small { font-family: "Noto Sans KR", sans-serif; font-size: 13px; font-weight: 500; }
+.kind-label { font-size: 13px; font-weight: 700; color: #a07000; margin: 10px 0 6px; }

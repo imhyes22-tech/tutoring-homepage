@@ -1,6 +1,6 @@
 // 나이스 교육정보 개방 포털 학사일정 (학사일정 페이지 · 학교별 페이지 공용)
 // 인증키: open.neis.go.kr → 인증키 신청. 비어 있으면 일정이 5개까지만 나와요.
-const NEIS_KEY = '';
+const NEIS_KEY = 'c66b4fc1346b420a9312e4a01cf3840b';
 
 const Schedule = (() => {
   const API = 'https://open.neis.go.kr/hub/';
@@ -45,15 +45,28 @@ const Schedule = (() => {
       grade = +b.dataset.g; draw();
     };
 
+    // 방학처럼 같은 이름이 며칠 이어지면 "시작 ~ 끝" 한 줄로 묶기 (주말 · 공휴일 사이 4일까지 허용)
+    const day = s => new Date(`${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}`).getTime() / 864e5;
+    function merge(list) {
+      const out = [];
+      for (const r of list) {
+        const prev = out.findLast(o => o.EVENT_NM === r.EVENT_NM);
+        if (prev && day(r.AA_YMD) - day(prev.END) <= 4) prev.END = r.AA_YMD;
+        else out.push({ ...r, END: r.AA_YMD });
+      }
+      return out.sort((a, b) => a.AA_YMD.localeCompare(b.AA_YMD));
+    }
+
     function draw() {
-      const list = rows.filter(r => !grade || r[GRADE_KEYS[grade - 1] + '_GRADE_EVENT_YN'] !== 'N');
+      const list = merge(rows.filter(r => !grade || r[GRADE_KEYS[grade - 1] + '_GRADE_EVENT_YN'] !== 'N'));
       if (!list.length) { els.list.innerHTML = '<p class="sch-msg">앞으로 6개월 동안 등록된 일정이 없어요.</p>'; return; }
       let month = '';
       els.list.innerHTML = list.map(r => {
         const m = `${r.AA_YMD.slice(0, 4)}년 ${+r.AA_YMD.slice(4, 6)}월`;
         const head = m !== month ? `<h3 class="sch-month">${(month = m)}</h3>` : '';
         const k = kind(r);
-        return `${head}<div class="sch-ev ev-${k}"><span class="d">${pretty(r.AA_YMD)}</span><span class="n">${ICON[k]} ${esc(r.EVENT_NM)}</span></div>`;
+        const when = r.END !== r.AA_YMD ? `${pretty(r.AA_YMD)} ~ ${pretty(r.END)}` : pretty(r.AA_YMD);
+        return `${head}<div class="sch-ev ev-${k}"><span class="d">${when}</span><span class="n">${ICON[k]} ${esc(r.EVENT_NM)}</span></div>`;
       }).join('');
       if (!NEIS_KEY) els.list.insertAdjacentHTML('beforeend', '<p class="note">* 지금은 미리보기라 일부 일정만 보여요.</p>');
     }

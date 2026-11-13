@@ -32,6 +32,10 @@ if (form) {
   if (params.get('center')) form.희망지점.value = '와와 ' + params.get('center');
   if (params.get('region')) form.시도.value = params.get('region');
   if (params.get('school')) form.학교.value = params.get('school');
+  if (params.get('subject')) {
+    const box = form.querySelector(`input[name="과목"][value="${CSS.escape(params.get('subject'))}"]`);
+    if (box) box.checked = true;
+  }
   if (params.get('type') === 'tutor') form.querySelector('input[name="희망수업"][value="1:1 과외 (방문)"]').checked = true;
 
   const msg = document.getElementById('formMsg');
