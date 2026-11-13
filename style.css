@@ -328,3 +328,40 @@ footer strong { color: var(--ink); }
 .center .near { font-size: 13px; color: var(--ink-2); }
 [hidden] { display: none !important; }
 .hero-tag { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 700; color: #a07000; background: var(--yellow-soft); padding: 5px 14px; border-radius: 999px; }
+
+/* 학사일정 */
+.sch-search { display: flex; gap: 8px; background: none; padding: 0; border-radius: 0; }
+.sch-search input { flex: 1; }
+.sch-search .btn { padding: 0 26px; font-size: 18px; }
+.sch-msg { text-align: center; color: var(--ink-2); margin: 10px 0 16px; }
+.sch-schools { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 820px; margin: 0 auto; }
+.sch-school { font: inherit; text-align: left; border: 0; cursor: pointer; display: grid; gap: 2px; padding: 16px 20px; }
+.sch-school b { font-family: "Jua", sans-serif; font-weight: 400; font-size: 19px; }
+.sch-school span { font-size: 13px; color: var(--ink-2); }
+.sch-school:hover { outline: 2px solid var(--yellow); }
+.sch-title { text-align: center; font-size: 28px; margin: 8px 0 14px; }
+.sch-title small { font-family: "Noto Sans KR", sans-serif; font-size: 14px; color: var(--ink-2); }
+.sch-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 8px; font-size: 13px; }
+.sch-legend span { padding: 3px 12px; border-radius: 999px; }
+.sch-list { max-width: 720px; margin: 0 auto; }
+.sch-month { font-size: 20px; margin: 22px 0 8px; }
+.sch-ev { display: grid; grid-template-columns: 120px 1fr; gap: 12px; background: #fff; border-radius: 14px; padding: 12px 18px; margin-bottom: 8px; box-shadow: 0 3px 0 var(--line); font-size: 15px; border-left: 6px solid var(--line); }
+.sch-ev .d { color: var(--ink-2); font-size: 14px; }
+.ev-exam { background: var(--pink); } .sch-ev.ev-exam { background: #fff; border-left-color: #ff8fab; font-weight: 700; }
+.ev-break { background: var(--sky); } .sch-ev.ev-break { background: #fff; border-left-color: #8ec3ff; }
+.ev-off { background: var(--lilac); } .sch-ev.ev-off { background: #fff; border-left-color: #c3b1ff; }
+.ev-etc { background: var(--mint); } .sch-ev.ev-etc { background: #fff; border-left-color: #8fdcb9; }
+.sch-cta { margin-top: 36px; }
+@media (max-width: 860px) {
+  .sch-schools { grid-template-columns: 1fr; }
+  .sch-ev { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* 학교별 페이지 */
+.sub-h1 { font-size: .55em; color: var(--ink-2); }
+.school-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.school-links a { background: #fff; border-radius: 999px; padding: 7px 14px; font-size: 14px; box-shadow: 0 3px 0 var(--line); }
+.school-links a:hover { background: var(--yellow-soft); }
+.gu-block { margin-bottom: 18px; }
+.gu-block h3 { font-size: 17px; margin-bottom: 8px; color: var(--ink-2); }
+.foot-links a { text-decoration: underline; }

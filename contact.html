@@ -32,8 +32,9 @@
       <a href="/program.html">과목 · 수업</a>
       <a href="/price.html">수강료</a>
       <a href="/centers.html">센터 찾기</a>
+      <a href="/tutoring.html">1:1 과외</a>
+      <a href="/schedule.html">학사일정</a>
       <a href="/class-status.html">수업현황</a>
-      <a href="/contact.html#faq">자주 묻는 질문</a>
     </nav>
     <a href="/contact.html" class="btn yellow">상담 신청</a>
     <button class="menu-toggle" aria-label="메뉴 열기">☰</button>
@@ -100,6 +101,20 @@
           </label>
         </div>
 
+        <fieldset>
+          <legend>희망 수업</legend>
+          <div class="checks">
+            <label><input type="radio" name="희망수업" value="와와 학원" checked><span>🏫 와와 학원</span></label>
+            <label><input type="radio" name="희망수업" value="1:1 과외 (방문)"><span>🏠 1:1 과외 · 방문</span></label>
+            <label><input type="radio" name="희망수업" value="1:1 과외 (화상)"><span>💻 1:1 과외 · 화상</span></label>
+            <label><input type="radio" name="희망수업" value="상담 후 결정"><span>상담 후 결정</span></label>
+          </div>
+        </fieldset>
+
+        <label class="f">학교 (선택)
+          <input type="text" name="학교" placeholder="예: 가재울고등학교">
+        </label>
+
         <label class="f">희망 지점 (선택)
           <input type="text" name="희망지점" placeholder="모르면 비워 두세요. 가까운 곳으로 연결해 드려요.">
         </label>
@@ -124,9 +139,9 @@
         <details class="consent">
           <summary>개인정보 수집 · 이용 및 제3자 제공 안내 (자세히 보기)</summary>
           <table>
-            <tr><th>수집 항목</th><td>학생 학년, 연락처, 지역, 희망 지점, 관심 과목, 문의 내용</td></tr>
+            <tr><th>수집 항목</th><td>학생 학년, 연락처, 지역, 학교, 희망 수업 · 지점, 관심 과목, 문의 내용</td></tr>
             <tr><th>이용 목적</th><td>학습 상담 신청 접수 및 상담 연락</td></tr>
-            <tr><th>제공받는 자</th><td>신청 지역의 와와학습코칭센터 지점</td></tr>
+            <tr><th>제공받는 자</th><td>신청 지역의 와와학습코칭센터 지점 (1:1 과외 신청 시 (주)동화세상에듀코 과외 담당)</td></tr>
             <tr><th>제공 목적</th><td>상담 연락 및 방문 상담 안내</td></tr>
             <tr><th>보유 기간</th><td>상담 목적 달성 후 지체 없이 파기</td></tr>
           </table>
@@ -193,8 +208,8 @@
           <p>전국에 187개 지점이 있어요. <a href="/centers.html" style="text-decoration:underline">센터 찾기</a>에서 동네 이름으로 찾아보시거나, 신청서에 지역을 남겨 주시면 가까운 지점으로 연결해 드려요.</p>
         </details>
         <details>
-          <summary>1:1 과외랑 같은 건가요?</summary>
-          <p>아니에요. 한 선생님이 수업 내내 한 학생만 가르치는 1:1 과외와는 달라요. 코치 선생님 한 분이 여러 학생을 맡되, 학생마다 진도와 교재를 따로 맞춰 개별로 지도해요. <a href="/about.html#nest" style="text-decoration:underline">둥지학습 자세히 보기</a></p>
+          <summary>와와학습코칭센터는 1:1 과외랑 같은 건가요?</summary>
+          <p>아니에요. 학원은 한 선생님이 수업 내내 한 학생만 가르치는 1:1 과외와는 달라요. 코치 선생님 한 분이 여러 학생을 맡되, 학생마다 진도와 교재를 따로 맞춰 개별로 지도해요. 1:1 과외를 원하시면 <a href="/tutoring.html" style="text-decoration:underline">1:1 과외 안내</a>를 확인해 주세요.</p>
         </details>
         <details>
           <summary>초등학생은 몇 학년부터 다닐 수 있나요?</summary>
@@ -214,7 +229,7 @@
         </details>
         <details>
           <summary>온라인(화상) 수업도 있나요?</summary>
-          <p>아니요. 모든 수업은 지점에 직접 와서 코치 선생님과 함께 해요.</p>
+          <p>와와학습코칭센터(학원) 수업은 모두 지점에 직접 와서 해요. 화상 수업을 원하시면 와와 본사의 <a href="/tutoring.html" style="text-decoration:underline">1:1 과외(화상)</a>를 이용하실 수 있어요.</p>
         </details>
         <details>
           <summary>공부에 관심이 없는 아이도 괜찮을까요?</summary>
@@ -251,10 +266,10 @@
     },
     {
       "@type": "Question",
-      "name": "1:1 과외랑 같은 건가요?",
+      "name": "와와학습코칭센터는 1:1 과외랑 같은 건가요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "아니에요. 한 선생님이 수업 내내 한 학생만 가르치는 1:1 과외와는 달라요. 코치 선생님 한 분이 여러 학생을 맡되, 학생마다 진도와 교재를 따로 맞춰 개별로 지도해요. 둥지학습 자세히 보기"
+        "text": "아니에요. 학원은 한 선생님이 수업 내내 한 학생만 가르치는 1:1 과외와는 달라요. 코치 선생님 한 분이 여러 학생을 맡되, 학생마다 진도와 교재를 따로 맞춰 개별로 지도해요. 1:1 과외를 원하시면 1:1 과외 안내를 확인해 주세요."
       }
     },
     {
@@ -294,7 +309,7 @@
       "name": "온라인(화상) 수업도 있나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "아니요. 모든 수업은 지점에 직접 와서 코치 선생님과 함께 해요."
+        "text": "와와학습코칭센터(학원) 수업은 모두 지점에 직접 와서 해요. 화상 수업을 원하시면 와와 본사의 1:1 과외(화상)를 이용하실 수 있어요."
       }
     },
     {
@@ -322,6 +337,7 @@
 
 <footer>
   <div class="wrap">
+    <span class="foot-links"><a href="/schools.html">학교별 학원 · 과외 찾기</a> · <a href="/centers.html">센터 찾기</a> · <a href="/contact.html#faq">자주 묻는 질문</a></span>
     <span><strong>해피에듀</strong> · 와와학습코칭센터 마케팅 파트너 · 문의 <a href="tel:010-8241-2051">010-8241-2051</a></span>
     <span>본 사이트는 와와학습코칭센터 공식 홈페이지가 아닙니다. 와와학습코칭센터는 (주)동화세상에듀코의 브랜드입니다.</span>
     <span>© 2026 해피에듀</span>

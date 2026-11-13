@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>우리 학교 학사일정 · 시험 기간 조회 | 해피에듀</title>
+<meta name="description" content="학교 이름만 넣으면 중간고사 · 기말고사 시험 기간, 방학 · 개학, 휴업일 등 학사일정을 바로 확인할 수 있어요. 나이스 교육정보 공공데이터 기반.">
+<link rel="canonical" href="https://happyedu.co.kr/schedule.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="naver-site-verification" content="31cf17236227568c555d790cddf1cc57daae2d2e" />
+<!-- 검색 노출용 미리보기 (카카오톡·네이버 공유 시 표시) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="해피에듀">
+<meta property="og:title" content="우리 학교 학사일정 · 시험 기간 조회 | 해피에듀">
+<meta property="og:description" content="학교 이름만 넣으면 중간고사 · 기말고사 시험 기간, 방학 · 개학, 휴업일 등 학사일정을 바로 확인할 수 있어요. 나이스 교육정보 공공데이터 기반.">
+<meta property="og:url" content="https://happyedu.co.kr/schedule.html">
+<meta property="og:locale" content="ko_KR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="/" class="logo"><span class="logo-face">😊</span>해피에듀</a>
+    <nav class="menu" id="menu">
+      <a href="/about.html">와와 소개</a>
+      <a href="/program.html">과목 · 수업</a>
+      <a href="/price.html">수강료</a>
+      <a href="/centers.html">센터 찾기</a>
+      <a href="/tutoring.html">1:1 과외</a>
+      <a href="/schedule.html">학사일정</a>
+      <a href="/class-status.html">수업현황</a>
+    </nav>
+    <a href="/contact.html" class="btn yellow">상담 신청</a>
+    <button class="menu-toggle" aria-label="메뉴 열기">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="wrap">
+      <div class="crumb"><a href="/">홈</a> › 학사일정</div>
+      <span class="chapter-no">📅 SCHOOL CALENDAR</span>
+      <h1>우리 학교 시험은<br>언제일까?</h1>
+      <p>학교 이름만 넣으면 시험 기간 · 방학 · 휴업일을 바로 보여드려요.</p>
+    </div>
+  </section>
+  <section class="block" id="schedule">
+    <div class="wrap">
+      <form class="finder-search sch-search" id="schForm">
+        <input type="search" id="schQ" placeholder="🏫 학교 이름 (예: 사직고, 대치중, 가재울초)" aria-label="학교 이름" required>
+        <button class="btn yellow" type="submit">찾기</button>
+      </form>
+      <p class="sch-msg" id="schMsg">학교 이름을 넣고 찾기를 눌러 주세요.</p>
+      <div class="sch-schools" id="schSchools"></div>
+
+      <div id="schResult" hidden>
+        <h2 class="sch-title" id="schTitle"></h2>
+        <div class="region-chips" id="schGrades"></div>
+        <div class="sch-legend">
+          <span class="ev-exam">📝 시험</span><span class="ev-break">🏖️ 방학 · 개학</span><span class="ev-off">😴 휴업일</span><span class="ev-etc">📌 행사</span>
+        </div>
+        <div class="sch-list" id="schList"></div>
+        <div class="highlight sch-cta">
+          <p class="hl-main" style="font-size:clamp(20px,3vw,28px)">시험이 다가오고 있나요?<br><mark>시험 4주 전</mark>부터 계획을 세우면 달라져요.</p>
+          <p class="hl-sub">우리 학교 시험 범위에 맞춘 학습 계획, 상담에서 함께 세워요.</p>
+          <a href="/contact.html" class="btn yellow" style="margin-top:18px" id="schCta">시험 대비 상담 신청 ✏️</a>
+        </div>
+      </div>
+      <p class="note">* 학사일정은 나이스 교육정보 개방 포털(open.neis.go.kr)의 공공데이터로, 학교가 등록한 일정을 그대로 보여드려요.<br>* 학교 사정에 따라 바뀔 수 있으니 정확한 일정은 학교 공지를 확인해 주세요.</p>
+    </div>
+  </section>
+
+  <script src="/schedule.js"></script>
+  <script>
+    (() => {
+      const $ = id => document.getElementById(id);
+      const esc = Schedule.esc;
+
+      $('schForm').addEventListener('submit', async e => {
+        e.preventDefault();
+        const name = $('schQ').value.trim();
+        if (!name) return;
+        $('schResult').hidden = true;
+        $('schSchools').innerHTML = '';
+        $('schMsg').textContent = '학교를 찾고 있어요…';
+        try {
+          const rows = await Schedule.neis('schoolInfo', { SCHUL_NM: name });
+          if (!rows.length) { $('schMsg').textContent = '찾는 학교가 없어요. 학교 이름을 다시 확인해 주세요. (예: 사직고 → 사직고등학교)'; return; }
+          $('schMsg').textContent = rows.length === 1 ? '' : '학교를 골라 주세요.';
+          $('schSchools').innerHTML = rows.map((r, i) => `
+            <button class="card sch-school" data-i="${i}">
+              <b>${esc(r.SCHUL_NM)}</b><span>${esc(r.LCTN_SC_NM)} · ${esc(r.ORG_RDNMA)}</span>
+            </button>`).join('');
+          $('schSchools').onclick = ev => {
+            const b = ev.target.closest('.sch-school'); if (!b) return;
+            pick(rows[b.dataset.i]);
+          };
+          if (rows.length === 1) pick(rows[0]);
+        } catch {
+          $('schMsg').textContent = '학사일정을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.';
+        }
+      });
+
+      async function pick(s) {
+        $('schSchools').innerHTML = '';
+        $('schMsg').textContent = `${s.SCHUL_NM} 학사일정을 불러오는 중…`;
+        try {
+          await Schedule.show(s, { grades: $('schGrades'), list: $('schList') });
+          $('schMsg').textContent = '';
+          $('schTitle').innerHTML = `🏫 ${esc(s.SCHUL_NM)} <small>앞으로 6개월 일정</small>`;
+          $('schCta').href = '/contact.html?school=' + encodeURIComponent(s.SCHUL_NM) + '#apply';
+          $('schResult').hidden = false;
+          $('schResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch {
+          $('schMsg').textContent = '학사일정을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.';
+        }
+      }
+    })();
+  </script>
+
+  <div class="wrap">
+    <div class="next-cta">
+      <a href="/class-status.html" class="to-next"><small>다음 챕터 →</small><b>05 수업현황</b></a>
+      <a href="/contact.html" class="to-apply"><small>궁금한 건 상담으로 →</small><b>무료 상담 신청 ✏️</b></a>
+    </div>
+  </div>
+</main>
+
+<a href="/contact.html#apply" class="btn yellow float-cta" id="floatCta">💬 상담 신청</a>
+
+<footer>
+  <div class="wrap">
+    <span class="foot-links"><a href="/schools.html">학교별 학원 · 과외 찾기</a> · <a href="/centers.html">센터 찾기</a> · <a href="/contact.html#faq">자주 묻는 질문</a></span>
+    <span><strong>해피에듀</strong> · 와와학습코칭센터 마케팅 파트너 · 문의 <a href="tel:010-8241-2051">010-8241-2051</a></span>
+    <span>본 사이트는 와와학습코칭센터 공식 홈페이지가 아닙니다. 와와학습코칭센터는 (주)동화세상에듀코의 브랜드입니다.</span>
+    <span>© 2026 해피에듀</span>
+  </div>
+</footer>
+
+<script src="/site.js"></script>
+</body>
+</html>
