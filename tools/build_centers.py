@@ -118,7 +118,7 @@ for c in details:
       <div class="compare card"><table>
         <thead><tr><th></th><th>주 2회</th><th>주 3회</th><th>주 5회</th></tr></thead>
         <tbody>{price_rows}</tbody></table></div>
-      <p class="muted small">* {'서울' if region == '서울' else '서울 외 지역'} 기준 참고용 금액이에요. 정확한 수강료는 지점 방문 상담 때 정해져요. <a href="/price.html">수강료 자세히</a></p>
+      <p class="muted small">* {'서울' if region == '서울' else '서울 외 지역'} 기준 참고용 금액이에요. 정확한 수강료는 지점 방문 상담 때 정해져요. <a href="/program.html#price">수강료 자세히</a></p>
 
       <h2>와와 둥지학습</h2>
       <p>코치 선생님을 가운데 두고 원형 테이블에 둘러앉아, 학생마다 다른 교재와 진도로 공부해요. 막히면 바로 질문하고, 학습 플래너로 계획과 실행을 함께 점검해요. <a href="/about.html#nest" style="text-decoration:underline">둥지학습 자세히 보기</a></p>

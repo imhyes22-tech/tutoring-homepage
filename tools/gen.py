@@ -5,8 +5,7 @@ PHONE = "010-8241-2051"
 
 NAV = [
     ("about.html", "와와 소개"),
-    ("program.html", "과목 · 수업"),
-    ("price.html", "수강료"),
+    ("program.html", "과목 · 수강료"),
     ("centers.html", "센터 찾기"),
     ("tutoring.html", "1:1 과외"),
     ("schedule.html", "학사일정"),
