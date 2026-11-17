@@ -8,8 +8,7 @@ NAV = [
     ("program.html", "과목 · 수강료"),
     ("centers.html", "센터 찾기"),
     ("tutoring.html", "1:1 과외"),
-    ("schedule.html", "학사일정"),
-    ("class-status.html", "수업현황"),
+    ("class-status.html", "수업현황 · 학사일정"),
 ]
 
 def head(file, title, desc):
