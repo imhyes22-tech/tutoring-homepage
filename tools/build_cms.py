@@ -70,6 +70,7 @@ def parse_front(text):
     return data, body
 
 def unquote(v):
+    if v == "[]": return []
     if len(v) >= 2 and v[0] == v[-1] and v[0] in "'\"": v = v[1:-1].replace("''", "'")
     return {"true": True, "false": False}.get(v, v)
 
