@@ -137,7 +137,7 @@ def main():
         <h3>와와 {esc(branch)}</h3>
         <p class="addr">📍 {esc(c["a"])}</p>
         <div class="center-btns">
-          <a class="btn white" href="https://map.naver.com/p/search/{esc(c["a"])}" target="_blank" rel="noopener">지도 보기</a>
+          <a class="btn white" href="/center/{urllib.parse.quote(branch)}.html">센터 자세히 보기</a>
           <a class="btn yellow" href="{esc(q)}">이 지점 상담 신청</a>
         </div>
       </div>'''
