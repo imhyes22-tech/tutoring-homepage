@@ -1,0 +1,78 @@
+# Pages CMS 관리 화면 설정 (https://app.pagescms.org)
+# 수업현황 글을 저장하면 GitHub Actions(tools/build_cms.py)가 글 페이지 · 목록 · 사이트맵을 자동으로 만들어요.
+
+media:
+  input: images/class
+  output: /images/class
+  extensions: [jpg, jpeg, png, webp, heic, heif]
+  rename: random
+
+content:
+  - name: class
+    label: 수업현황
+    type: collection
+    path: content/class
+    format: yaml-frontmatter
+    filename:
+      template: "{year}-{month}-{day}-{hour}{minute}{second}.md"
+      field: false
+    view:
+      fields: [title, branch, date, published]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+        description: "예: 목동점 둥지 교실, 기말 2주 전 오답 정리 시간"
+      - name: date
+        label: 날짜
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: branch
+        label: 지점
+        type: select
+        required: true
+        options:
+          values: ["가좌점", "광장점", "구산점", "금천점", "내발산점", "당산점", "돈암점", "동소문점", "마포점", "명일점", "목동점", "삼각산점", "상암점", "송파위례점", "신도림점", "신방화점", "염창점", "은평점", "제기점", "종암점", "하계점", "갈매점", "갈산점", "고잔점", "광명점", "교하점", "금릉점", "기흥구청점", "다산도농점", "다산점", "다산지금점", "단대점", "덕이점", "동백점", "동탄목동점", "동탄호수점", "마두점", "망포점", "명지대역점", "미금점", "미사점", "반달점", "반송점", "배곧점", "범박점", "별가람점", "별내점", "병점점", "보라점", "봉담점", "부발점", "비산점", "비전점", "사우점", "산내점", "산본점", "삼송점", "상동점", "상현점", "서수원점", "세교점", "센트럴점", "소하점", "수지점", "수진점", "시흥대야점", "신곡점", "신봉점", "신중동점", "야탑점", "영천점", "영통구청점", "영통점", "오산대역점", "오산점", "옥길스타점", "옥길점", "옥정점", "운양점", "운정점", "운정중앙점", "운정호수점", "원당점", "원흥점", "위례점", "위례창곡점", "이매점", "이충점", "인창점", "장곡점", "장기점", "주엽점", "중동점", "중산점", "진접점", "천천점", "철산점", "탄벌점", "탄현점", "퇴계원점", "평내점", "풍동점", "하남풍산점", "행신점", "향남점", "호매실점", "호평점", "화정점", "후곡점", "흥덕점", "구월점", "논현점", "동춘점", "루원시티점", "부평점", "송도점", "웰카운티점", "인천삼산점", "청라점", "관저점", "관평점", "도안점", "둔산점", "반석점", "송촌점", "지족점", "태평점", "새롬점", "당진중앙점", "두정점", "불당점", "신방점", "쌍용점", "가경점", "개신점", "복대점", "산남점", "충주용산점", "칠금점", "서신점", "송천점", "전주혁신점", "선운점", "수완점", "신창점", "진월점", "첨단점", "치평점", "동래점", "반여점", "사직점", "좌동점", "화명점", "남외점", "복산점", "삼산점", "송정점", "대구도남점", "대구역점", "대구역점2호관", "대구장기점", "반월당점", "복현점", "수성2가점", "수성만촌점", "신월성점", "알파시티점", "율하점", "이곡점", "이시아폴리스점", "칠곡점", "침산점", "두호점", "사동점", "양덕점", "옥계점", "정평점", "거제수월점", "상남점", "석동점", "강릉교동점", "단구점", "석사2호점", "원주시청점", "혁신점", "후평점", "노형점"]
+      - name: subject
+        label: 과목
+        type: select
+        options:
+          values: ["수학", "영어", "국어", "과학", "사회", "한국사", "기타"]
+      - name: school
+        label: 학교 (선택)
+        type: string
+        description: "학교 이름을 정확히 쓰면 그 학교 페이지로 연결돼요. 예: 가재울고등학교"
+      - name: photos
+        label: 사진
+        type: image
+        description: "첫 번째 사진이 목록 썸네일이 돼요. 학생 얼굴 · 이름이 보이지 않는 사진만 올려 주세요."
+        options:
+          multiple:
+            max: 10
+      - name: excerpt
+        label: 요약 (선택)
+        type: text
+        description: "목록 카드에 보이는 2~3줄. 비워 두면 본문 앞부분이 들어가요."
+      - name: published
+        label: 공개
+        type: boolean
+        default: true
+      - name: area
+        type: string
+        hidden: true
+      - name: emoji
+        type: string
+        hidden: true
+      - name: body
+        label: 내용
+        type: rich-text
+        options:
+          format: html

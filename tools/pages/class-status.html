@@ -1,0 +1,101 @@
+  <!-- 수업현황 글 목록 -->
+  <section class="block" id="stories">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="pill">📋 CLASS NOTE</span>
+        <h2>지점에서 전하는 시험 대비 이야기</h2>
+        <p>학교별 실제 시험 일정에 맞춰, 과목마다 이렇게 준비해요.</p>
+      </div>
+      <div class="region-chips" id="postRegion"></div>
+      <div class="region-chips" id="postSubject" style="margin-top:8px"></div>
+      <p class="finder-count" id="postCount"></p>
+      <div class="posts" id="post-grid"></div>
+      <nav class="pager" id="postPager" aria-label="페이지"></nav>
+    </div>
+  </section>
+
+  <!-- 수업 하루 흐름 -->
+  <section class="block" id="flow">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="pill">⏱️ ONE CLASS</span>
+        <h2>둥지 교실의 한 번 수업</h2>
+        <p>90~100분 동안 이런 순서로 공부해요.</p>
+      </div>
+      <div class="flow">
+        <div class="flow-item"><div class="dot">📒</div><div class="card"><h3>플래너로 오늘 할 일 확인</h3><p>자리에 앉으면 먼저 플래너를 펴고, 오늘 공부할 분량을 선생님과 확인해요.</p></div></div>
+        <div class="flow-item"><div class="dot">✏️</div><div class="card"><h3>각자 자기 진도대로 공부</h3><p>같은 테이블에 앉아도 교재와 진도는 학생마다 달라요. 자기 수준에 맞는 문제를 풀어요.</p></div></div>
+        <div class="flow-item"><div class="dot">🙋</div><div class="card"><h3>막히면 바로 질문</h3><p>모르는 문제가 나오면 그 자리에서 물어봐요. 선생님은 학생들을 돌아보며 한 명씩 설명해 줘요.</p></div></div>
+        <div class="flow-item"><div class="dot">🔁</div><div class="card"><h3>틀린 문제 다시 보기</h3><p>틀린 문제는 왜 틀렸는지 확인하고 다시 풀어요. 같은 실수를 반복하지 않도록 정리해요.</p></div></div>
+        <div class="flow-item"><div class="dot">✅</div><div class="card"><h3>오늘 점검 · 다음 계획</h3><p>계획한 만큼 했는지 체크하고, 다음 수업에서 할 공부를 플래너에 적어요.</p></div></div>
+      </div>
+      <p class="note">* 지점과 학생에 따라 순서와 시간 배분은 달라질 수 있어요.</p>
+    </div>
+  </section>
+
+  <!-- 학부모님이 받는 것 -->
+  <section class="block" id="report">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="pill">📬 REPORT</span>
+        <h2>학부모님은 이렇게 알 수 있어요</h2>
+      </div>
+      <div class="ways">
+        <div class="card"><div class="bubble c-sky">🗓️</div><h3>주간 · 월간 계획</h3><p>무엇을 언제 공부할지 계획을 세우고 점검해요</p></div>
+        <div class="card"><div class="bubble c-yellow">📊</div><h3>매달 학습 리포트</h3><p>진도와 학습 상태를 정리해서 알려드려요</p></div>
+        <div class="card"><div class="bubble c-pink">💬</div><h3>학부모 상담</h3><p>궁금한 점은 지점 선생님과 상담할 수 있어요</p></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="/class-posts.js"></script>
+  <script>
+    (() => {
+      const PER = 12;
+      const COLOR = { 수학: 'var(--yellow-soft)', 영어: 'var(--sky)', 국어: 'var(--pink)', 과학: 'var(--mint)', 사회: 'var(--lilac)', 한국사: 'var(--lilac)' };
+      const posts = (window.CLASS_POSTS || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+      const esc = s => String(s).replace(/[&<>"']/g, ch => '&#' + ch.charCodeAt(0) + ';');
+      const params = new URLSearchParams(location.search);
+      let region = params.get('region') || '전체', subject = params.get('subject') || '전체';
+      let page = Math.max(1, +params.get('page') || 1);
+
+      const chips = (el, all, cur, key) => {
+        el.innerHTML = ['전체', ...all].map(v => `<button data-v="${esc(v)}"${v === cur ? ' class="on"' : ''}>${esc(v)}</button>`).join('');
+        el.onclick = e => {
+          const b = e.target.closest('button'); if (!b) return;
+          if (key === 'region') region = b.dataset.v; else subject = b.dataset.v;
+          page = 1; render(true);
+        };
+      };
+      const uniq = k => [...new Set(posts.map(p => p[k]))];
+
+      function render(scroll) {
+        chips(document.getElementById('postRegion'), uniq('region'), region, 'region');
+        chips(document.getElementById('postSubject'), uniq('subject'), subject, 'subject');
+        const list = posts.filter(p => (region === '전체' || p.region === region) && (subject === '전체' || p.subject === subject));
+        const pages = Math.max(1, Math.ceil(list.length / PER));
+        page = Math.min(page, pages);
+        document.getElementById('postCount').textContent = `수업현황 ${list.length}개`;
+        document.getElementById('post-grid').innerHTML = list.slice((page - 1) * PER, page * PER).map(p => `
+          <a class="card post" href="/class/${encodeURIComponent(p.slug)}.html">
+            <div class="thumb" style="background:${p.thumb ? `center / cover no-repeat url('${encodeURI(p.thumb)}')` : (COLOR[p.subject] || 'var(--yellow-soft)')}">${p.thumb ? '' : p.emoji}<span class="thumb-tag">${esc(p.subject)}</span></div>
+            <div class="body">
+              <span class="meta">${esc(p.area)} · 와와 ${esc(p.branch)} · ${p.date.replace(/-/g, '.')}</span>
+              <h3>${esc(p.title)}</h3>
+              <p>${esc(p.excerpt)}</p>
+            </div>
+          </a>`).join('') || '<p class="sch-msg">아직 글이 없어요.</p>';
+        const q = n => { const u = new URLSearchParams(); if (region !== '전체') u.set('region', region); if (subject !== '전체') u.set('subject', subject); if (n > 1) u.set('page', n); return '?' + u + '#post-grid'; };
+        document.getElementById('postPager').innerHTML = pages < 2 ? '' :
+          Array.from({ length: pages }, (_, i) => i + 1).map(n => `<a href="${q(n)}"${n === page ? ' class="on"' : ''} data-n="${n}">${n}</a>`).join('');
+        const clean = q(page).replace('#post-grid', '');
+        history.replaceState(null, '', clean === '?' ? location.pathname : clean);
+        if (scroll) document.getElementById('stories').scrollIntoView({ behavior: 'smooth' });
+      }
+      document.getElementById('postPager').addEventListener('click', e => {
+        const a = e.target.closest('a'); if (!a) return;
+        e.preventDefault(); page = +a.dataset.n; render(true);
+      });
+      render(false);
+    })();
+  </script>

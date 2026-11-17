@@ -132,7 +132,7 @@
         document.getElementById('postCount').textContent = `수업현황 ${list.length}개`;
         document.getElementById('post-grid').innerHTML = list.slice((page - 1) * PER, page * PER).map(p => `
           <a class="card post" href="/class/${encodeURIComponent(p.slug)}.html">
-            <div class="thumb" style="background:${COLOR[p.subject] || 'var(--yellow-soft)'}">${p.emoji}<span class="thumb-tag">${esc(p.subject)}</span></div>
+            <div class="thumb" style="background:${p.thumb ? `center / cover no-repeat url('${encodeURI(p.thumb)}')` : (COLOR[p.subject] || 'var(--yellow-soft)')}">${p.thumb ? '' : p.emoji}<span class="thumb-tag">${esc(p.subject)}</span></div>
             <div class="body">
               <span class="meta">${esc(p.area)} · 와와 ${esc(p.branch)} · ${p.date.replace(/-/g, '.')}</span>
               <h3>${esc(p.title)}</h3>

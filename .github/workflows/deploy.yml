@@ -1,0 +1,61 @@
+# 저장(push)할 때마다: 수업현황 글 · 사진 처리 → 바뀐 파일 저장 → happyedu.co.kr 배포
+name: 사이트 빌드 · 배포
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 도구 설치
+        run: pip install pillow pillow-heif pyyaml markdown
+
+      - name: 수업현황 글 · 사진 처리
+        run: python tools/build_cms.py
+
+      - name: 바뀐 파일 저장
+        run: |
+          git config user.name "happyedu-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A class class-posts.js sitemap.xml images content
+          if ! git diff --cached --quiet; then
+            git commit -m "수업현황 자동 빌드"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: 배포할 파일 모으기
+        run: |
+          mkdir -p ../_site
+          rsync -a --exclude '.git' --exclude '.github' --exclude 'tools' --exclude 'content' --exclude '.pages.yml' ./ ../_site/
+          mv ../_site ./_site
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
