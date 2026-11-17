@@ -71,6 +71,12 @@ content:
       - name: emoji
         type: string
         hidden: true
+      - name: cover
+        type: string
+        hidden: true
+      - name: code
+        type: string
+        hidden: true
       - name: body
         label: 내용
         type: rich-text

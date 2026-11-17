@@ -116,6 +116,7 @@ def main():
         c = CENTERS.get(branch)
         photos = data.get("photos") or []
         if isinstance(photos, str): photos = [photos]
+        cover = data.get("cover") or ""          # 지점 사진이 없을 때 쓰는 본사 제공 교실 사진
         bh = body_html(body)
         excerpt = str(data.get("excerpt") or "").strip() or plain(bh)[:110]
         emoji = data.get("emoji") or EMOJI.get(subject, "📸")
@@ -123,6 +124,9 @@ def main():
         school_url = SCHOOLS.get(school)
 
         gallery = "".join(f'<img src="{esc(p)}" alt="{esc(title)} 사진 {i}" loading="lazy">' for i, p in enumerate(photos, 1))
+        cover_html = "" if photos or not cover else (
+            f'<figure class="post-cover"><img src="{esc(cover)}" alt="와와학습코칭센터 교실 (본사 제공 사진)" loading="lazy">'
+            f'<figcaption>와와학습코칭센터 교실 · 본사 제공 사진 (지점 사진 아님)</figcaption></figure>')
         sub = " · ".join(x for x in [date.replace("-", "."), f"와와 {branch}" if branch else "", school] if x)
         center = ""
         if c:
@@ -142,7 +146,7 @@ def main():
                              esc(title), esc(sub)) + f'''
   <article class="block post-body">
     <div class="wrap narrow">
-      {f'<div class="post-photos">{gallery}</div>' if gallery else ''}
+      {f'<div class="post-photos">{gallery}</div>' if gallery else cover_html}
       {bh}
 {center}
       <p class="post-links">{links}</p>
@@ -151,7 +155,7 @@ def main():
 '''
         gen.build(f"class/{slug}.html", f"{esc(title)} | 해피에듀", esc(excerpt[:150]), page, quiet=True)
         entries.append(dict(slug=slug, region=c["r"] if c else "", area=area, branch=branch, school=school, subject=subject or "기타",
-                            date=date, emoji=emoji, thumb=photos[0] if photos else "", title=title, excerpt=excerpt))
+                            date=date, emoji=emoji, thumb=photos[0] if photos else cover, title=title, excerpt=excerpt))
 
     # 지워진 글의 페이지 삭제
     keep = {e["slug"] for e in entries}

@@ -410,3 +410,6 @@ footer strong { color: var(--ink); }
 .post-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; box-shadow: 0 4px 0 var(--line); }
 .post-photos img:only-child { aspect-ratio: auto; grid-column: 1 / -1; }
 .post-body img { max-width: 100%; border-radius: 16px; }
+.post-cover { margin: 0 0 28px; }
+.post-cover img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 18px; box-shadow: 0 4px 0 var(--line); }
+.post-cover figcaption { font-size: 12px; color: var(--ink-2); margin-top: 6px; text-align: right; }

@@ -5,6 +5,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "0 23 * * *"     # 매일 오전 8시(한국 시간)에 수업현황 자동 글 1개
 
 permissions:
   contents: write
@@ -30,6 +32,10 @@ jobs:
 
       - name: 도구 설치
         run: pip install pillow pillow-heif pyyaml markdown
+
+      - name: 수업현황 자동 글 쓰기 (매일 아침)
+        if: github.event_name == 'schedule'
+        run: python tools/auto_post.py 1
 
       - name: 수업현황 글 · 사진 처리
         run: python tools/build_cms.py
