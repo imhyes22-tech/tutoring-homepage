@@ -425,3 +425,19 @@ footer strong { color: var(--ink); }
 .school-links.plain span { font-size: 13px; }
 a.sch-ev { display: grid; }
 a.sch-ev b { color: #d0465f; margin-left: 6px; }
+
+/* ---------- 학습 시스템 (플랜 · 학습 · 생활 관리) ---------- */
+.sys-row { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: center; margin: 0 0 48px; }
+.sys-row.rev .sys-photos { order: 2; }
+.sys-photos { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+.sys-photos img { flex: 0 0 82%; width: 82%; aspect-ratio: 62 / 42; object-fit: cover; border-radius: 18px; box-shadow: 0 4px 0 var(--line); scroll-snap-align: start; background: #fff; }
+.sys-photos img:only-child { flex-basis: 100%; }
+.sys-no { display: inline-block; padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+.sys-text h3 { font-size: clamp(22px, 3vw, 30px); line-height: 1.35; margin-bottom: 12px; }
+.sys-text p { color: var(--ink-2); font-size: 15px; }
+.sys-tags { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.sys-tags li { background: #fff; border: 2px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13px; }
+@media (max-width: 760px) {
+  .sys-row { grid-template-columns: 1fr; gap: 16px; }
+  .sys-row.rev .sys-photos { order: 0; }
+}
